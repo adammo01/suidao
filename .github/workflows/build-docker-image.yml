@@ -38,8 +38,9 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
+          # 修复1：删除tags:前缀，并用toLower自动转小写（无需硬编码用户名）
           tags: |
-            tags: ghcr.io/adammo01/suidao:9001
+            ghcr.io/${{ toLower(github.repository_owner) }}/suidao:9001
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.description=HTTP Server
